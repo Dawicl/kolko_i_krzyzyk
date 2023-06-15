@@ -25,36 +25,34 @@ def krzyzyk():
     plansza[a][b] = "X"
 
 def sprawdzenie():
-    a1 = plansza[0][0]
-    a2 = plansza[0][1]
-    a3 = plansza[0][2]
-    b1 = plansza[1][0]
-    b2 = plansza[1][1]
-    b3 = plansza[1][2]
-    c1 = plansza[2][0]
-    c2 = plansza[2][1]
-    c3 = plansza[2][2]
-    
-    if a1 == a2 and a2 == a3:
+    for i in range(0, 3):
+        if plansza[i][0] == plansza[i][1] and plansza[i][0] == plansza[i][2] and plansza[i][0] !=' ':
+            print("Koniec gry!")
+            return True
+        
+        elif plansza[0][i] == plansza[1][i] and plansza[0][i] == plansza[2][i] and plansza[0][i] !=' ':
+            print("Koniec gry!")
+            return True
+
+    if plansza[0][0] == plansza[1][1] and plansza[0][0] == plansza[2][2] and plansza[0][0] !=' ':
         print("Koniec gry!")
         return True
-    elif b1 == b2 and b2 == b3:
+        
+    elif plansza[2][0] == plansza[1][1] and plansza[2][0] == plansza[0][2] and plansza[2][0] !=' ':
         print("Koniec gry!")
         return True
-    elif c1 == c2 and c2 == c3:
-        print("Koniec gry!")
-        return True
-    else:
-        return False
+
+plansza_do_gry()
 
 while True:
-    plansza_do_gry()
     kolko()
-    plansza_do_gry()
     if sprawdzenie() == True:
         break
+    plansza_do_gry()
     krzyzyk()
-    plansza_do_gry()
     if sprawdzenie() == True:
         break
+    plansza_do_gry()
+
+plansza_do_gry()
     
