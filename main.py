@@ -22,31 +22,27 @@ def plansza_do_gry():
 
 def kolko():
     print("Kolej Gracza 1: O")
-    lista_temp = input("Podaj pole w które chcesz wstawić znak: ").split(sep=',')
-    a = int(lista_temp[0])
-    b = int(lista_temp[1])
-    if plansza[a][b] == " ":
-        plansza[a][b] = "O"
-    elif plansza[a][b] == "X":
-        print("To pole jest zajęte!")
+    while True:
         lista_temp = input("Podaj pole w które chcesz wstawić znak: ").split(sep=',')
         a = int(lista_temp[0])
         b = int(lista_temp[1])
-        plansza[a][b] = "O"
+        if plansza[a][b] == "O" or plansza[a][b] == "X":
+            print("To pole jest zajęte!")
+        else:
+            plansza[a][b] = "O"
+            break
 
 def krzyzyk():
     print("Kolej Gracza 2: X")
-    lista_temp = input("Podaj pole w które chcesz wstawić znak: ").split(sep=',')
-    a = int(lista_temp[0])
-    b = int(lista_temp[1])
-    if plansza[a][b] == " ":
-        plansza[a][b] = "X"
-    elif plansza[a][b] == "O":
-        print("To pole jest zajęte!")
+    while True:
         lista_temp = input("Podaj pole w które chcesz wstawić znak: ").split(sep=',')
         a = int(lista_temp[0])
         b = int(lista_temp[1])
-        plansza[a][b] = "X"
+        if plansza[a][b] == "O" or plansza[a][b] == "X":
+            print("To pole jest zajęte!")
+        else:
+            plansza[a][b] = "X"
+            break
 
 def sprawdzenie():
     for i in range(0, len(plansza)):
@@ -63,11 +59,16 @@ def sprawdzenie():
     temp_2 = []
     for i in range(0, len(plansza)):
         temp_2.append(plansza[i][i])
-    if len(set(temp_2)) == 1 and temp[0] != " ":
+    if len(set(temp_2)) == 1 and temp_2[0] != " ":
         print("Koniec gry!")
         return True
     
-    
+    temp_3 = []
+    for i in range(0, len(plansza)):
+        temp_3.append(plansza[i][len(plansza) - 1 - i])
+    if len(set(temp_3)) == 1 and temp_3[0] != " ":
+        print("Koniec gry!")
+        return True
         
     return False
 
