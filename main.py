@@ -25,36 +25,51 @@ def kolko():
     lista_temp = input("Podaj pole w które chcesz wstawić znak: ").split(sep=',')
     a = int(lista_temp[0])
     b = int(lista_temp[1])
-    plansza[a][b] = "O"
+    if plansza[a][b] == " ":
+        plansza[a][b] = "O"
+    elif plansza[a][b] == "X":
+        print("To pole jest zajęte!")
+        lista_temp = input("Podaj pole w które chcesz wstawić znak: ").split(sep=',')
+        a = int(lista_temp[0])
+        b = int(lista_temp[1])
+        plansza[a][b] = "O"
 
 def krzyzyk():
     print("Kolej Gracza 2: X")
     lista_temp = input("Podaj pole w które chcesz wstawić znak: ").split(sep=',')
     a = int(lista_temp[0])
     b = int(lista_temp[1])
-    plansza[a][b] = "X"
+    if plansza[a][b] == " ":
+        plansza[a][b] = "X"
+    elif plansza[a][b] == "O":
+        print("To pole jest zajęte!")
+        lista_temp = input("Podaj pole w które chcesz wstawić znak: ").split(sep=',')
+        a = int(lista_temp[0])
+        b = int(lista_temp[1])
+        plansza[a][b] = "X"
 
 def sprawdzenie():
     for i in range(0, len(plansza)):
-        for j in range(0, len(plansza)):
-            if plansza[j][0] == plansza[j][len(plansza) -1] and plansza[j][0] == plansza[j][1] and plansza[j][0] != " ":
-                print("Koniec gry!")
-                return True
-            elif plansza[0][j] == plansza[len(plansza) -1][j] and plansza[0][j] == plansza[1][j] and plansza[0][j] != " ":
-                print("Koniec gry!")
-                return True
+        if len(set(plansza[i])) == 1 and plansza[i][0] != " ":
+            print("Koniec gry!")
+            return True
+    temp = []
+    for i in range(0, len(plansza)):
+        temp.append(plansza[i][0])
+    if len(set(temp)) == 1 and temp[0] != " ":
+        print("Koniec gry!")
+        return True
+    
+    temp_2 = []
+    for i in range(0, len(plansza)):
+        temp_2.append(plansza[i][i])
+    if len(set(temp_2)) == 1 and temp[0] != " ":
+        print("Koniec gry!")
+        return True
+    
+    
         
-    #         elif plansza[0][i] == plansza[1][i] and plansza[0][i] == plansza[2][i] and plansza[0][i] !=' ':
-    #             print("Koniec gry!")
-    #             return True
-
-    # if plansza[0][0] == plansza[1][1] and plansza[0][0] == plansza[2][2] and plansza[0][0] !=' ':
-    #     print("Koniec gry!")
-    #     return True
-        
-    # elif plansza[2][0] == plansza[1][1] and plansza[2][0] == plansza[0][2] and plansza[2][0] !=' ':
-    #     print("Koniec gry!")
-    #     return True
+    return False
 
 budowanie_planszy()
 plansza_do_gry()
